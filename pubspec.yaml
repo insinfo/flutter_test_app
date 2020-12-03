@@ -1,0 +1,42 @@
+name: flutter_test_app
+description: skeleton or basic flutter application model with Firebase and Webview for testing
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.0
+  webview_flutter: ^1.0.7
+  #firebase services
+  firebase_messaging: ^6.0.16
+  #cloud_firestore: ^0.13.7
+  #firebase_auth: ^0.16.1
+  #firebase_analytics: ^5.0.16
+
+  #mobx state manager
+  mobx: ^1.2.1
+  flutter_mobx: ^1.1.0 
+
+  flutter_modular: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^4.1.1
+  build_runner: ^1.10.6
+  mobx_codegen: ^1.1.0
+  slidy: ^2.2.1
+
+flutter: 
+  uses-material-design: true
+
+scripts:
+  mobx: flutter pub run build_runner watch --delete-conflicting-outputs
