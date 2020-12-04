@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+
+import 'package:flutter_test_app/modules/home/home_page.dart';
 import 'package:flutter_test_app/shared/theme/style.dart';
 
 class AppWidget extends StatelessWidget {
@@ -9,7 +10,6 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
-      navigatorKey: Modular.navigatorKey,
       title: 'Test App',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -30,7 +30,7 @@ class AppWidget extends StatelessWidget {
             )*/
       ),
       initialRoute: '/',
-      onGenerateRoute: Modular.generateRoute,
+      routes: {'/': (ctx) => HomePage()},
     );
   }
 }

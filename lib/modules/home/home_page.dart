@@ -1,22 +1,19 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../../shared/theme/style.dart';
-import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeController> {
+class _HomePageState extends State<HomePage> {
   BuildContext ctx;
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -43,7 +40,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         print("onMessage teste: $message");
         if (message?.containsKey('notification') == true) {
           if (message['notification'].containsKey('body')) {
-            controller.scaffoldKey.currentState.showSnackBar(SnackBar(
+            _scaffoldKey.currentState.showSnackBar(SnackBar(
               content: Text(message['notification']['body']),
               duration: Duration(seconds: 4),
             ));
@@ -52,7 +49,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         if (message?.containsKey('aps') == true) {
           if (message['aps'].containsKey('alert')) {
             if (message['aps']['alert'].containsKey('body')) {
-              controller.scaffoldKey.currentState.showSnackBar(SnackBar(
+              _scaffoldKey.currentState.showSnackBar(SnackBar(
                 content: Text(message['aps']['alert']['body']),
                 duration: Duration(seconds: 4),
               ));
@@ -72,19 +69,19 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     //Future.delayed(Duration(seconds: 1), () {
     _firebaseMessaging.requestNotificationPermissions(
         IosNotificationSettings(sound: true, badge: true, alert: true, provisional: true));
-    print("pedindo permisao");
+    // print("pedindo permisao");
     //});
 
     _firebaseMessaging.onIosSettingsRegistered.listen((IosNotificationSettings settings) {
-      print("pediu permisao");
-      print("Settings registered: $settings");
+      // print("pediu permisao");
+      // print("Settings registered: $settings");
     });
     //se escreve em um topico para receber as notificações
     _firebaseMessaging.subscribeToTopic('riodasostrasapp');
     _firebaseMessaging.getToken().then((String token) {
       assert(token != null);
       setState(() {
-        print("Push Messaging token: $token");
+        // print("Push Messaging token: $token");
       });
     });
   }
@@ -95,7 +92,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     ctx = context;
     screenSize = MediaQuery.of(context).size;
     return Scaffold(
-      key: controller.scaffoldKey,
+      key: _scaffoldKey,
       backgroundColor: scaffoldBackgroundColor,
       body: Container(
         child: SingleChildScrollView(

@@ -22,18 +22,17 @@ dependencies:
   #firebase_analytics: ^5.0.16
 
   #mobx state manager
-  mobx: ^1.2.1
-  flutter_mobx: ^1.1.0 
-
-  flutter_modular: ^2.0.1
+  #mobx: ^1.2.1
+  #flutter_mobx: ^1.1.0 
+  #flutter_modular: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^4.1.1
   build_runner: ^1.10.6
-  mobx_codegen: ^1.1.0
-  slidy: ^2.2.1
+  #mobx_codegen: ^1.1.0
+  #slidy: ^2.2.1
 
 flutter: 
   uses-material-design: true

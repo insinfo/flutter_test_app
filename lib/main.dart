@@ -1,10 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_test_app/app_widget.dart';
 import 'package:flutter_test_app/shared/app_config.dart';
-
-import 'app_module.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -18,5 +15,5 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-  runApp(ModularApp(module: AppModule()));
+  runApp(AppWidget());
 }
